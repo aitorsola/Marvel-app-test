@@ -21,6 +21,12 @@ class CharacterDetailRouter: CharacterDetailRoutingLogic, CharacterDetailDataPas
 
   weak var viewController: CharacterDetailViewController?
   var dataStore: CharacterDetailDataStore?
+  
+  // MARK: - Lifecycle
+  
+  deinit {
+    print("👋🏻👋🏻👋🏻👋🏻 \(self)")
+  }
 
   // MARK: - Routing
 

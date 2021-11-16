@@ -26,6 +26,12 @@ class CharacterDetailInteractor: CharacterDetailBusinessLogic, CharacterDetailDa
   var characterSelected: CharacterEntity?
   var characterResponse: CharacterEntity?
   
+  // MARK: - Lifecycle
+  
+  deinit {
+    print("👋🏻👋🏻👋🏻👋🏻 \(self)")
+  }
+  
   // MARK: - Public
 
   func doLoadData(request: CharacterDetail.LoadData.Request) {

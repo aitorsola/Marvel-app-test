@@ -16,6 +16,12 @@ class CharacterDetailPresenter: CharacterDetailPresentationLogic {
   // MARK: - Properties
 
   weak var viewController: CharacterDetailDisplayLogic?
+  
+  // MARK: - Lifecycle
+  
+  deinit {
+    print("👋🏻👋🏻👋🏻👋🏻 \(self)")
+  }
 
   // MARK: - Public
 

@@ -22,6 +22,12 @@ class CharactersListRouter: CharactersListRoutingLogic, CharactersListDataPassin
 
   weak var viewController: CharactersListViewController?
   var dataStore: CharactersListDataStore?
+  
+  // MARK: - Lifecycle
+  
+  deinit {
+    print("👋🏻👋🏻👋🏻👋🏻 \(self)")
+  }
 
   // MARK: - Routing
 

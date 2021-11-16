@@ -40,6 +40,10 @@ class CharacterDetailViewController: UIViewController {
     setup()
   }
   
+  deinit {
+    print("👋🏻👋🏻👋🏻👋🏻 \(self)")
+  }
+  
   // MARK: - Setup
   
   private func setup() {

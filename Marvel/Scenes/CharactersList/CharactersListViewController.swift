@@ -48,6 +48,10 @@ class CharactersListViewController: UIViewController {
     super.init(coder: aDecoder)
     setup()
   }
+  
+  deinit {
+    print("👋🏻👋🏻👋🏻👋🏻 \(self)")
+  }
 
   // MARK: - Setup
 

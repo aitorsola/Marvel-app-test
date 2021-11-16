@@ -25,6 +25,12 @@ class CharactersListInteractor: CharactersListBusinessLogic, CharactersListDataS
   
   private var characters: [CharacterEntity] = []
   var selectedCharacter: CharacterEntity?
+  
+  // MARK: - Lifecycle
+  
+  deinit {
+    print("👋🏻👋🏻👋🏻👋🏻 \(self)")
+  }
 
   // MARK: - Public
   

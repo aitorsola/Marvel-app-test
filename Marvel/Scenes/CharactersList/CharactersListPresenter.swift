@@ -17,6 +17,12 @@ class CharactersListPresenter: CharactersListPresentationLogic {
   // MARK: - Properties
 
   weak var viewController: CharactersListDisplayLogic?
+  
+  // MARK: - Lifecycle
+  
+  deinit {
+    print("👋🏻👋🏻👋🏻👋🏻 \(self)")
+  }
 
   // MARK: - Public
   
