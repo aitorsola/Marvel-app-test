@@ -23,6 +23,8 @@ class CharactersListViewController: UIViewController {
   
   // MARK: - Properties
 
+  private let refreshControl = UIRefreshControl()
+
   var interactor: CharactersListBusinessLogic?
   var router: (CharactersListRoutingLogic & CharactersListDataPassing)?
   
@@ -70,11 +72,15 @@ class CharactersListViewController: UIViewController {
   }
   
   private func setupComponents() {
+    refreshControl.addTarget(self, action: #selector(doRefreshList), for: .valueChanged)
+    refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+
     tableView?.backgroundColor = .clear
     tableView?.separatorStyle = .none
     tableView?.delegate = self
     tableView?.dataSource = self
     tableView?.estimatedRowHeight = UITableView.automaticDimension
+    tableView?.refreshControl = refreshControl
     tableView?.register(UINib(nibName: "CharacterTableViewCell", bundle: nil),
                         forCellReuseIdentifier: "CharacterTableViewCell")
   }
@@ -88,9 +94,16 @@ class CharactersListViewController: UIViewController {
     doGetCharacters()
   }
 
+  // MARK: - Actions
+
+  @objc private func doRefreshList() {
+    refreshControl.beginRefreshing()
+    interactor?.doGetCharacters(request: CharactersList.DoGetCharacters.Request())
+  }
+
   // MARK: - Private
   
-  private func doGetCharacters() {
+  @objc private func doGetCharacters() {
     showLoader()
     interactor?.doGetCharacters(request: CharactersList.DoGetCharacters.Request())
   }
@@ -112,6 +125,8 @@ extension CharactersListViewController {
 extension CharactersListViewController: CharactersListDisplayLogic {
   
   func displayGetCharacters(request: CharactersList.DoGetCharacters.ViewModel) {
+    refreshControl.endRefreshing()
+    tableView?.refreshControl?.endRefreshing()
     hideLoader()
     switch request.action {
     case .success(let cellData):

@@ -21,8 +21,11 @@ class CharacterTableViewCell: UITableViewCell {
   // MARK: - Public
   
   func setupUI(data: CharacterTableViewCellData) {
+    let placeholder = UIImage(systemName: "photo.fill")?.withRenderingMode(.automatic)
     nameLabel?.text = data.name
-    characterImageView?.sd_setImage(with: data.url, completed: nil)
+    characterImageView?.sd_setImage(with: data.url,
+                                    placeholderImage: placeholder,
+                                    completed: nil)
   }
   
   // MARK: - Private
@@ -33,6 +36,7 @@ class CharacterTableViewCell: UITableViewCell {
     characterImageView?.layer.masksToBounds = true
     characterImageView?.layer.cornerRadius = 25
     characterImageView.clipsToBounds = true
-    characterImageView.contentMode = .scaleAspectFill
+    characterImageView.contentMode = .scaleAspectFit
+    characterImageView.tintColor = .systemRed
   }
 }

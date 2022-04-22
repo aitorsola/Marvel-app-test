@@ -55,6 +55,6 @@ class CharactersListPresenter: CharactersListPresentationLogic {
   private func buildTableViewCellData(data: [CharacterEntity]) -> [CharacterTableViewCellData] {
     data.map({CharacterTableViewCellData(name: $0.name,
                                          description: $0.description,
-                                         url: URL(string: $0.url))})
+                                         url: URL(string: $0.url ?? ""))})
   }
 }

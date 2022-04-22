@@ -31,7 +31,7 @@ class CharacterDetailPresenter: CharacterDetailPresentationLogic {
     case .success(let entity):
       let viewData = CharacterDetailViewData(name: entity.name,
                                              description: entity.description,
-                                             url: URL(string: entity.url))
+                                             url: URL(string: entity.url ?? ""))
       action = .success(viewData)
     case .failure(let error):
       let errorString: String

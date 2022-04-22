@@ -69,12 +69,14 @@ struct CharacterDetailResponse: Decodable, DomainConvertible {
   let data: CharacterDetailResultData
   
   func domainEntity(headers: [String : String]) -> [CharacterEntity]? {
-    let defaultImage = "https://w7.pngwing.com/pngs/825/791/png-transparent-daffy-duck-donald-duck-bugs-bunny-rabbit-rampage-porky-pig-pato-lucas-vertebrate-fictional-character-meme-thumbnail.png"
     return data.results.map { item in
-      CharacterEntity(id: Int(item.id) ?? 0,
-                      name: item.name,
-                      description: item.description,
-                      url: item.url?.first?.url ?? defaultImage)
+      let url: String?
+      if let path = item.thumbnail?.path, let `extension` = item.thumbnail?.extension {
+        url = path + "." + `extension`
+      } else {
+        url = nil
+      }
+      return CharacterEntity(id: Int(item.id) ?? 0, name: item.name, description: item.description, url: url)
     }
   }
   
@@ -86,11 +88,12 @@ struct CharacterDetailResponse: Decodable, DomainConvertible {
     let id: String
     let name: String
     let description: String
-    let url: [URL]?
+    let thumbnail: CharacterURL?
   }
   
-  struct URL: Decodable {
-    let url: String
+  struct CharacterURL: Decodable {
+    let path: String
+    let `extension`: String
   }
 }
 

@@ -11,5 +11,5 @@ struct CharacterEntity {
   let id: Int
   let name: String
   let description: String
-  let url: String
+  let url: String?
 }
